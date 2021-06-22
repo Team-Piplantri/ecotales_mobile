@@ -1,8 +1,8 @@
 import React from 'react'
 
 const UserContext = React.createContext({
-    isLogin: true,
-    setLogin: () => {}
+    isLoginContext: false,
+    setLoginContext: () => {}
 });
 
 export default UserContext
