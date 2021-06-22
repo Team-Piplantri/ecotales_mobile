@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React,{useEffect, useState} from 'react';
+import React,{useEffect, useState,useContext} from 'react';
 import { StyleSheet, Text, View, Button,Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -16,6 +16,8 @@ export default function App() {
 
   const [login, setLogin] = useState(false)
 
+  const {isLoginContext,setLoginContext} = useContext(UserContext)
+
   async function get(key) {
     let result = await SecureStore.getItemAsync(key);
     if(result){
@@ -28,16 +30,17 @@ export default function App() {
   useEffect(()=>{
     if(get('access_token')){
       setLogin(true)
+      setLoginContext(true)
+    }
+    else{
+      setLoginContext(false)
     }
   },[])
 
-  const changeValue = (e) => {
-    setLogin(e)
-  }
 
   return (
     <>
-    <UserContext.Provider value = {login} setValue = {changeValue}>
+    <UserContext.Provider value = {login}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen name="Home" component={Home} />

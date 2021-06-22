@@ -17,7 +17,7 @@ const Login = ({ navigation }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const userLogValue = useContext(UserContext)
+  const {isLoginContext,setLoginContext} = useContext(UserContext)
 
   const [success, setSuccess] = useState(false)
 
@@ -41,7 +41,7 @@ const Login = ({ navigation }) => {
         console.log(response.data.access)
         save('refresh_token', response.data.refresh);
         console.log(response.data.refresh)
-        // userLogValue.setValue(true)
+        setLoginContext(true);
 
         return response;
     } catch (error) {
