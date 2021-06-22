@@ -18,9 +18,9 @@ const Singlequiz = ({navigation}) => {
       const [currentQues, setCurrentQues] = useState(initialQuesObj);
       const [currentExplanation, setCurrentExplanation] = useState("Answer the Question to View Explanation!");
     
-      const [primaryBtnStyle, setPrimaryStyle] = useState("light");
-      const [secondaryBtnStyle, setSecondaryStyle] = useState("light");
-      const [tertiaryBtnStyle, setTertiaryStyle] = useState("light");
+      const [primaryBtnStyle, setPrimaryStyle] = useState("#841584");
+      const [secondaryBtnStyle, setSecondaryStyle] = useState("#841584");
+      const [tertiaryBtnStyle, setTertiaryStyle] = useState("#841584");
     
       const userLogValue = useContext(UserContext);
     
@@ -36,70 +36,104 @@ const Singlequiz = ({navigation}) => {
         requestData();
       }, []);
     
-      // const handleClick = async (event) => {
-      //   // Submitting Answer to db and Updating Explanation
-      //   let answerSelected = event.target.name;
-      //   const response = await axiosInstance.post('/modes/answer-sq/', {
-      //     'questionID': currentQues.id,
-      //     'answer': answerSelected,
-      //   })
-      //   if (answerSelected == currentQues.answer) {
-      //     if (answerSelected == 1) {
-      //       setPrimaryStyle("success");
-      //     }
-      //     else if (answerSelected == 2) {
-      //       setSecondaryStyle("success");
-      //     }
-      //     else if (answerSelected == 3) {
-      //       setTertiaryStyle("success");
-      //     }
-      //     setScore((prevScore) => prevScore + 10);
-      //   }
-      //   else {
-      //     setScore((prevScore) => prevScore - 5);
-      //     if (currentQues.answer == 1) {
-      //       setPrimaryStyle("success");
-      //     }
-      //     else if (currentQues.answer == 2) {
-      //       setSecondaryStyle("success");
-      //     }
-      //     else if (currentQues.answer == 3) {
-      //       setTertiaryStyle("success");
-      //     }
+      const handleClick1 = async () => {
+        // Submitting Answer to db and Updating Explanation
+        let answerSelected = 1;
+        const response = await axiosInstance.post('/modes/answer-sq/', {
+          'questionID': currentQues.id,
+          'answer': answerSelected,
+        })
+        if (answerSelected == currentQues.answer) {
+          setPrimaryStyle("green");
+          setScore((prevScore) => prevScore + 10);
+        }
+        else {
+          setScore((prevScore) => prevScore - 5);
+          if (currentQues.answer == 2) {
+            setSecondaryStyle("green");
+          }
+          else if (currentQues.answer == 3) {
+            setTertiaryStyle("green");
+          }
+            setPrimaryStyle("red");
+        }
+        // document.querySelector("#primarybtn").setAttribute("disabled", "");
+        // document.querySelector("#secondarybtn").setAttribute("disabled", "");
+        // document.querySelector("#tertiarybtn").setAttribute("disabled", "");
+        setCurrentExplanation(currentQues.explanation);
+      }
+
+      const handleClick2 = async () => {
+        // Submitting Answer to db and Updating Explanation
+        let answerSelected = 2;
+        const response = await axiosInstance.post('/modes/answer-sq/', {
+          'questionID': currentQues.id,
+          'answer': answerSelected,
+        })
+        if (answerSelected == currentQues.answer) {
+          setSecondaryStyle("green");
+          setScore((prevScore) => prevScore + 10);
+        }
+        else {
+          setScore((prevScore) => prevScore - 5);
+          if (currentQues.answer == 1) {
+            setPrimaryStyle("green");
+          }
+          else if (currentQues.answer == 3) {
+            setTertiaryStyle("green");
+          }
+            setSecondaryStyle("red");
+        }
+        // document.querySelector("#primarybtn").setAttribute("disabled", "");
+        // document.querySelector("#secondarybtn").setAttribute("disabled", "");
+        // document.querySelector("#tertiarybtn").setAttribute("disabled", "");
+        setCurrentExplanation(currentQues.explanation);
+      }
+
+      const handleClick3 = async () => {
+        // Submitting Answer to db and Updating Explanation
+        let answerSelected = 3;
+        const response = await axiosInstance.post('/modes/answer-sq/', {
+          'questionID': currentQues.id,
+          'answer': answerSelected,
+        })
+        if (answerSelected == currentQues.answer) {
+          setTertiaryStyle("green");
+          setScore((prevScore) => prevScore + 10);
+        }
+        else {
+          setScore((prevScore) => prevScore - 5);
+          if (currentQues.answer == 2) {
+            setSecondaryStyle("green");
+          }
+          else if (currentQues.answer == 1) {
+            setPrimaryStyle("green");
+          }
+            setTertiaryStyle("red");
+        }
+        // document.querySelector("#primarybtn").setAttribute("disabled", "");
+        // document.querySelector("#secondarybtn").setAttribute("disabled", "");
+        // document.querySelector("#tertiarybtn").setAttribute("disabled", "");
+        setCurrentExplanation(currentQues.explanation);
+      }
     
-      //     if (answerSelected == 1) {
-      //       setPrimaryStyle("danger");
-      //     }
-      //     else if (answerSelected == 2) {
-      //       setSecondaryStyle("danger");
-      //     }
-      //     else if (answerSelected == 3) {
-      //       setTertiaryStyle("danger");
-      //     }
-      //   }
-      //   document.querySelector("#primarybtn").setAttribute("disabled", "");
-      //   document.querySelector("#secondarybtn").setAttribute("disabled", "");
-      //   document.querySelector("#tertiarybtn").setAttribute("disabled", "");
-      //   setCurrentExplanation(currentQues.explanation);
-      // }
+      const changeNextQuestion = () => {
+        if (quesList.length - 2 == quesCount) { //last question disable button
+          // document.querySelector("#changeNextButton").setAttribute("disabled", "");
+        }
+        // document.querySelector("#primarybtn").removeAttribute("disabled", "");
+        // document.querySelector("#secondarybtn").removeAttribute("disabled", "");
+        // document.querySelector("#tertiarybtn").removeAttribute("disabled", "");
     
-      // const changeNextQuestion = (event) => {
-      //   if (quesList.length - 2 == quesCount) { //last question disable button
-      //     document.querySelector("#changeNextButton").setAttribute("disabled", "");
-      //   }
-      //   document.querySelector("#primarybtn").removeAttribute("disabled", "");
-      //   document.querySelector("#secondarybtn").removeAttribute("disabled", "");
-      //   document.querySelector("#tertiarybtn").removeAttribute("disabled", "");
-    
-      //   setCurrentExplanation("Answer the Question to View Explanation!");
-      //   setPrimaryStyle("light");
-      //   setSecondaryStyle("light");
-      //   setTertiaryStyle("light");
-      //   let currentCount = quesCount;
-      //   currentCount += 1;
-      //   setQuesCount(currentCount);
-      //   setCurrentQues(quesList[currentCount]);
-      // }
+        setCurrentExplanation("Answer the Question to View Explanation!");
+        setPrimaryStyle("#841584");
+        setSecondaryStyle("#841584");
+        setTertiaryStyle("#841584");
+        let currentCount = quesCount;
+        currentCount += 1;
+        setQuesCount(currentCount);
+        setCurrentQues(quesList[currentCount]);
+      }
     
       // var timeleft = 120;
       // var timeleftstr = "";
@@ -132,36 +166,51 @@ const Singlequiz = ({navigation}) => {
           </View>
           <View style={styles.quesbody}>
             <Image
-              style={{width: 200, height: 200, }}
+              style={{width: 200, height: 200, resizeMode: 'contain'}}
               source={{
                 uri: currentQues.ques_image,
               }}
             />
             <Text style={styles.h3}>{currentQues.ques_text}</Text>
-            <View style={[{marginBottom: '5%', width: '50%'}]}>
+            <View>
+              <View style={[{marginBottom: '5%'}]}>
+                <Button
+                onPress={handleClick1}
+                  style={styles.btn}
+                  title="Primary"
+                  color={primaryBtnStyle}
+                  />
+              </View>
+              <View style={[{marginBottom: '5%'}]}>
+                <Button
+                onPress={handleClick2}
+                  style={styles.btn}
+                  title="Secondary"
+                  color={secondaryBtnStyle}
+                  />
+              </View>
+              <View style={[{marginBottom: '5%'}]}>
+                <Button
+                onPress={handleClick3}
+                  style={styles.btn}
+                  title="Tertiary"
+                  color={tertiaryBtnStyle}
+                  />
+              </View>
+            </View>
+          </View>
+          <View style={[{marginBottom: '5%'}]}>
             <Button
+              onPress={changeNextQuestion}
               style={styles.btn}
-              onPress={() => navigation.navigate('Login')}
-              title="Login"
-              color="#841584"
+              title="Next"
+              color='#841354'
               />
           </View>
-          <View style={[{marginBottom: '5%', width: '50%'}]}>
-            <Button
-              style={styles.btn}
-              onPress={() => navigation.navigate('Login')}
-              title="Login"
-              color="#841584"
-              />
-          </View>
-          <View style={[{marginBottom: '5%', width: '50%'}]}>
-            <Button
-              style={styles.btn}
-              onPress={() => navigation.navigate('Login')}
-              title="Login"
-              color="#841584"
-              />
-          </View>
+          <View>
+            <Text>
+              {currentExplanation}
+            </Text>
           </View>
         </View>
      );
@@ -194,7 +243,8 @@ const styles = StyleSheet.create({
       fontSize: 20,
       textAlign: 'center',
       marginTop: '4%',
-      color: 'black'
+      color: 'black',
+      marginBottom: '4%'
     },
   
     h4: {
@@ -210,6 +260,7 @@ const styles = StyleSheet.create({
 
     quesbody: {
       paddingTop: '6%',
+      alignItems: 'center'
     },
   });
   
