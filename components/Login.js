@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState,useContext } from "react";
 import axiosInstance from "../axiosApi";
 import {
   SafeAreaView,
@@ -16,6 +16,8 @@ import UserContext from "../UserContext";
 const Login = ({ navigation }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const userLogValue = useContext(UserContext)
 
   const [success, setSuccess] = useState(false)
 
@@ -39,6 +41,7 @@ const Login = ({ navigation }) => {
         console.log(response.data.access)
         save('refresh_token', response.data.refresh);
         console.log(response.data.refresh)
+        // userLogValue.setValue(true)
 
         return response;
     } catch (error) {
@@ -46,18 +49,18 @@ const Login = ({ navigation }) => {
     }
 }
 
-    const redirect = () => {
-        navigation.navigate('Home')
-    }
+    // const redirect = () => {
+    //     navigation.navigate('Home')
+    // }
 
 
   return (
     <>
-    {success ? (
+    {/* {success ? (
         <>
             {redirect}
         </>
-    ): (<></>)}
+    ): (<></>)} */}
       <View style={styles.div}>
         <Text style={styles.h1}>Arthshastra</Text>
         {/* <Text style={styles.h2}>Login</Text> */}

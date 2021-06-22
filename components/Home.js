@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     h1: {
       fontSize: 30,
       padding: '3%',
-    //   textAlign: 'center',
+      textAlign: 'center',
       color: 'black'
     },
   

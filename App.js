@@ -1,18 +1,43 @@
 import { StatusBar } from 'expo-status-bar';
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import { StyleSheet, Text, View, Button,Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from './components/Home';
 import Singlequiz from './components/Singlequiz';
 import Login from './components/Login';
+import UserContext from './UserContext';
+import * as SecureStore from 'expo-secure-store';
+
 
 const Stack = createStackNavigator();
 
 export default function App() {
 
+  const [login, setLogin] = useState(false)
+
+  async function get(key) {
+    let result = await SecureStore.getItemAsync(key);
+    if(result){
+      return true
+    } else {
+      return false
+    }
+  }
+
+  useEffect(()=>{
+    if(get('access_token')){
+      setLogin(true)
+    }
+  },[])
+
+  const changeValue = (e) => {
+    setLogin(e)
+  }
+
   return (
     <>
+    <UserContext.Provider value = {login} setValue = {changeValue}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen name="Home" component={Home} />
@@ -20,6 +45,7 @@ export default function App() {
           <Stack.Screen name="Login" component={Login} />
         </Stack.Navigator>
       </NavigationContainer>
+    </UserContext.Provider>
     </>
   );
 }
