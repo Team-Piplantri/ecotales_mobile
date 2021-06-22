@@ -14,9 +14,10 @@ const Stack = createStackNavigator();
 
 export default function App() {
 
-  const [login, setLogin] = useState(false)
+  const [isLoginContext, setLoginContext] = useState(false)
+  const value = {isLoginContext, setLoginContext}
 
-  const {isLoginContext,setLoginContext} = useContext(UserContext)
+  // const {isLoginContext,setLoginContext} = useContext(UserContext)
 
   async function get(key) {
     let result = await SecureStore.getItemAsync(key);
@@ -29,18 +30,18 @@ export default function App() {
 
   useEffect(()=>{
     if(get('access_token')){
-      setLogin(true)
       setLoginContext(true)
+      // setLoginContext(true)
     }
     else{
-      setLoginContext(false)
+      // setLoginContext(false)
     }
   },[])
 
 
   return (
     <>
-    <UserContext.Provider value = {login}>
+    <UserContext.Provider value = {value}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen name="Home" component={Home} />

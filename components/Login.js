@@ -42,25 +42,20 @@ const Login = ({ navigation }) => {
         save('refresh_token', response.data.refresh);
         console.log(response.data.refresh)
         setLoginContext(true);
-
-        return response;
+        setSuccess(true)
+        navigation.navigate('Home')
+        // return response;
     } catch (error) {
         throw error;
     }
 }
 
-    // const redirect = () => {
-    //     navigation.navigate('Home')
-    // }
-
+    function redirect (){
+        navigation.navigate('Home')
+    }
 
   return (
     <>
-    {/* {success ? (
-        <>
-            {redirect}
-        </>
-    ): (<></>)} */}
       <View style={styles.div}>
         <Text style={styles.h1}>Arthshastra</Text>
         {/* <Text style={styles.h2}>Login</Text> */}
@@ -91,6 +86,7 @@ const Login = ({ navigation }) => {
     </>
   );
 };
+
 
 const styles = StyleSheet.create({
   input: {
