@@ -7,6 +7,7 @@ import Home from './components/Home';
 import Singlequiz from './components/Singlequiz';
 import Login from './components/Login';
 import Logout from './components/Logout';
+import Signup from './components/Signup';
 import UserContext from './UserContext';
 import * as SecureStore from 'expo-secure-store';
 import Chanbot from './components/Chanbot.js'

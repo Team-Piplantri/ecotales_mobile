@@ -12,26 +12,27 @@ const Logout = ({navigation}) => {
       
     async function get(key) {
     let result = await SecureStore.getItemAsync(key);
+        return result;
     }
 
     async function remove(key) {
         let result = await SecureStore.deleteItemAsync(key);
-        }
+    }
     
     async function handleLogout() {
         try {
             const response = await axiosInstance.post('/blacklist/', {
                 "refresh_token": get("refresh_token")
             });
-            remove('access_token');
-            remove('refresh_token');
-            axiosInstance.defaults.headers['Authorization'] = null;
-            setLoginContext(false);
-            navigation.navigate('Login')
         }
         catch (e) {
             console.log(e);
         };
+        remove('access_token');
+        remove('refresh_token');
+        axiosInstance.defaults.headers['Authorization'] = null;
+        setLoginContext(false);
+        navigation.navigate('Login')
     }
 
     return ( 
@@ -39,7 +40,8 @@ const Logout = ({navigation}) => {
             <Text>Sure you want to logout?</Text>
             <Button onPress={handleLogout} title='Logout'/>
         </View>
-     );
+        );
+
 }
  
 export default Logout;
