@@ -208,7 +208,7 @@ const Singlequiz = ({navigation}) => {
               />
           </View>
           <View>
-            <Text>
+            <Text style={styles.h4}>
               {currentExplanation}
             </Text>
           </View>
@@ -223,7 +223,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       // justifyContent: 'center',
       // padding: '5%',
-      marginTop: '10%'
+      // marginTop: '10%'
     },
   
     h1: {

@@ -64,7 +64,7 @@ const Home = ({ navigation }) => {
             <View style={[{ marginBottom: '5%', width: 120, textAlign: "center" }]}>
               <Button
                 style={styles.btn}
-                //   onPress={() => navigation.navigate('Login')}
+                onPress={() => navigation.navigate('Multiplequiz')}
                 title="Who's the economist"
                 color="#841584"
               />

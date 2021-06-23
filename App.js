@@ -5,13 +5,14 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from './components/Home';
 import Singlequiz from './components/Singlequiz';
+import Multiplequiz from './components/Multiplequiz';
 import Login from './components/Login';
 import Logout from './components/Logout';
 import Signup from './components/Signup';
 import UserContext from './UserContext';
 import * as SecureStore from 'expo-secure-store';
 import Chanbot from './components/Chanbot.js'
-
+import Forgot from './components/Forgot';
 
 const Stack = createStackNavigator();
 
@@ -66,9 +67,11 @@ export default function App({ navigation }) {
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Home">
             <Stack.Screen name="Singlequiz" component={Singlequiz} />
+            <Stack.Screen name="Multiplequiz" component={Multiplequiz} />
             <Stack.Screen name="Chanbot" component={Chanbot} />
             <Stack.Screen name="Logout" component={Logout} />
             <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="Forgot Password" component={Forgot} />
             {/* <Stack.Screen name="Home" component={Home} /> */}
             {isLoginContext ? (
               <Stack.Screen
