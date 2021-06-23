@@ -5,9 +5,12 @@ import { StyleSheet, Text, View, Button, Image, ImageBackground, Modal, Pressabl
 const Chanbot = () => {
     const [Quote, setQuote] = useState("")
 
-    useEffect(async () => {
-        const response = await axiosInstance.get("/modes/chan-quote/");
-        setQuote(response.data.quote);
+    useEffect(() => {
+        const requestData = async () => {
+            const response = await axiosInstance.get("/modes/chan-quote/");
+            setQuote(response.data.quote);
+          }
+          requestData();
     }, [])
 
     return (
