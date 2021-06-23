@@ -1,7 +1,10 @@
-import React,{useState} from 'react';
+import React,{useState,useContext} from 'react';
 import { StyleSheet, Text, View, Button,Image } from 'react-native';
+import UserContext from '../UserContext';
 
 const Home = ({navigation}) => {
+  const {isLoginContext,setLoginContext} = useContext(UserContext)
+
     return ( 
         <View style={styles.container}>
         <View style={styles.div}>
@@ -13,31 +16,44 @@ const Home = ({navigation}) => {
             <Text style={styles.h3}>Learn Economic Principles by Playing, and Enjoying!</Text>
             <Text style={styles.h3}>Multiple game modes, to relax, have fun, and learn, all at the same time!!</Text>
           </View>
+      {isLoginContext ? (
+        <>
           <View style={[{marginBottom: '5%', width: '50%'}]}>
-            <Button
-              style={styles.btn}
-              onPress={() => navigation.navigate('Singlequiz')}
-              title="Guess the Sector"
-              color="#841584"
-              />
-          </View>
-          <View style={[{marginBottom: '5%', width: '50%'}]}>
-            <Button
-              style={styles.btn}
-            //   onPress={() => navigation.navigate('Login')}
-              title="Who's the economist"
-              color="#841584"
-              />
-          </View>
-          <View style={[{marginBottom: '5%', width: '50%'}]}>
-            <Button
-              style={styles.btn}
-              // onPress={onPressLearnMore}
-              title="Country Simulator"
-              color="#841584"
-              />
-          </View>
-          <View style={[{marginBottom: '5%', width: '50%'}]}>
+          <Button
+            style={styles.btn}
+            onPress={() => navigation.navigate('Singlequiz')}
+            title="Guess the Sector"
+            color="#841584"
+            />
+        </View>
+        <View style={[{marginBottom: '5%', width: '50%'}]}>
+          <Button
+            style={styles.btn}
+          //   onPress={() => navigation.navigate('Login')}
+            title="Who's the economist"
+            color="#841584"
+            />
+        </View>
+        <View style={[{marginBottom: '5%', width: '50%'}]}>
+          <Button
+            style={styles.btn}
+            // onPress={onPressLearnMore}
+            title="Country Simulator"
+            color="#841584"
+            />
+        </View>
+        <View style={[{marginBottom: '5%', width: '50%'}]}>
+          <Button
+            style={styles.btn}
+            onPress={() => navigation.navigate('Logout')}
+            title="Logout"
+            color="#841584"
+            />
+        </View>
+        </>
+      ) : (
+        <>
+        <View style={[{marginBottom: '5%', width: '50%'}]}>
             <Button
               style={styles.btn}
               onPress={() => navigation.navigate('Login')}
@@ -45,7 +61,11 @@ const Home = ({navigation}) => {
               color="#841584"
               />
           </View>
-        </View>
+        </>
+      )}
+      </View>
+          
+        
      );
 }
 

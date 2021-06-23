@@ -18,6 +18,7 @@ const Login = ({ navigation }) => {
   const [password, setPassword] = useState("");
 
   const {isLoginContext,setLoginContext} = useContext(UserContext)
+  // console.log('login '+isLoginContext)
 
   const [success, setSuccess] = useState(false)
 
@@ -35,12 +36,12 @@ const Login = ({ navigation }) => {
             username: username,
             password: password
         });
-        console.log(response.status)
+        console.log('status'+response.status)
         axiosInstance.defaults.headers['Authorization'] = "JWT " + response.data.access;
         save('access_token', response.data.access);
-        console.log(response.data.access)
+        console.log('access'+response.data.access)
         save('refresh_token', response.data.refresh);
-        console.log(response.data.refresh)
+        console.log('refresh'+response.data.refresh)
         setLoginContext(true);
         setSuccess(true)
         navigation.navigate('Home')
@@ -50,9 +51,9 @@ const Login = ({ navigation }) => {
     }
 }
 
-    function redirect (){
-        navigation.navigate('Home')
-    }
+    // function redirect (){
+    //     navigation.navigate('Home')
+    // }
 
   return (
     <>

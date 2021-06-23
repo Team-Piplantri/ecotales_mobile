@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from './components/Home';
 import Singlequiz from './components/Singlequiz';
 import Login from './components/Login';
+import Logout from './components/Logout';
 import UserContext from './UserContext';
 import * as SecureStore from 'expo-secure-store';
 
@@ -17,25 +18,40 @@ export default function App() {
   const [isLoginContext, setLoginContext] = useState(false)
   const value = {isLoginContext, setLoginContext}
 
+  const [gett,setGett] = useState(false)
+
   // const {isLoginContext,setLoginContext} = useContext(UserContext)
 
   async function get(key) {
     let result = await SecureStore.getItemAsync(key);
+    console.log('result'+result)
     if(result){
-      return true
+      console.log('true')
+      setGett(true)
     } else {
-      return false
+      console.log('false')
+      setGett(false)
     }
   }
 
+  async function remove(key) {
+    let result = await SecureStore.deleteItemAsync(key);
+    }
+
+  // remove('access_token')
+
+  console.log('access token'+SecureStore.getItemAsync('access_token'))
+
   useEffect(()=>{
-    if(get('access_token')){
+    if(gett){
       setLoginContext(true)
+      console.log('executed')
       // setLoginContext(true)
     }
     else{
-      // setLoginContext(false)
+      setLoginContext(false)
     }
+    console.log('login'+isLoginContext)
   },[])
 
 
@@ -44,9 +60,11 @@ export default function App() {
     <UserContext.Provider value = {value}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Singlequiz" component={Singlequiz} />
-          <Stack.Screen name="Login" component={Login} />
+              <Stack.Screen name="Home" component={Home} />
+              <Stack.Screen name="Singlequiz" component={Singlequiz} />
+              <Stack.Screen name="Logout" component={Logout} />
+              <Stack.Screen name="Login" component={Login} />
+          
         </Stack.Navigator>
       </NavigationContainer>
     </UserContext.Provider>
