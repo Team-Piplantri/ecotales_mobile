@@ -7,6 +7,7 @@ import Home from './components/Home';
 import Singlequiz from './components/Singlequiz';
 import Login from './components/Login';
 import Logout from './components/Logout';
+import Signup from './components/Signup';
 import UserContext from './UserContext';
 import * as SecureStore from 'expo-secure-store';
 
@@ -64,7 +65,7 @@ export default function App() {
               <Stack.Screen name="Singlequiz" component={Singlequiz} />
               <Stack.Screen name="Logout" component={Logout} />
               <Stack.Screen name="Login" component={Login} />
-          
+              <Stack.Screen name="Signup" component={Signup} />
         </Stack.Navigator>
       </NavigationContainer>
     </UserContext.Provider>

@@ -53,11 +53,19 @@ const Home = ({navigation}) => {
         </>
       ) : (
         <>
-        <View style={[{marginBottom: '5%', width: '50%'}]}>
+          <View style={[{marginBottom: '5%', width: '50%'}]}>
             <Button
               style={styles.btn}
               onPress={() => navigation.navigate('Login')}
               title="Login"
+              color="#841584"
+              />
+          </View>
+          <View style={[{marginBottom: '5%', width: '50%'}]}>
+            <Button
+              style={styles.btn}
+              onPress={() => navigation.navigate('Signup')}
+              title="Signup"
               color="#841584"
               />
           </View>
