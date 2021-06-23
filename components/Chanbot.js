@@ -1,28 +1,33 @@
-import React from 'react'
-import { StyleSheet, Text, View, Button, Image, ImageBackground, Modal,Pressable } from 'react-native';
+import React, { useState, useEffect } from 'react'
+import { StyleSheet, Text, View, Button, Image, ImageBackground, Modal, Pressable } from 'react-native';
 
 
 const Chanbot = () => {
+    const [Quote, setQuote] = useState("")
+
+    useEffect(async () => {
+        const response = await axiosInstance.get("/modes/chan-quote/");
+        setQuote(response.data.quote);
+    }, [])
+
     return (
         <View style={styles.container}>
             <ImageBackground style={{ resizeMode: 'cover', flex: 1, alignItems: "center" }}
                 source={{
-                    uri: 'https://i.imgur.com/ztAdVuc.jpeg',
+                    uri: 'https://i.imgur.com/WKFJfD3.png',
                 }}>
                 <View style={styles.div}>
                     <Text style={styles.h1}>Arthshastra</Text>
-                    {/* <Text style={styles.h2}>Login</Text> */}
                 </View>
                 <View style={styles.body}>
                     <Text style={styles.h2}>Tales of Arthashastra</Text>
-                    <Text style={styles.h3}>Diversified economy should consist of productive forests, water 
-                    reservoirs, mines, productive activities, trade, markets, roads, ports, and storage.</Text>
-                    <View style={[{flex:1,alignItems:"center"}]}>
-                    <Image style={{ width: 200, height: 200, resizeMode: 'contain' }}
-                        source={{
-                            uri: 'https://i.imgur.com/LmRc2Rr.png',
-                        }}></Image>
-                        </View>
+                    <Text style={styles.h3}>{Quote}</Text>
+                    <View style={[{ flex: 1, alignItems: "center" }]}>
+                        <Image style={{ width: 200, height: 200, resizeMode: 'contain' }}
+                            source={{
+                                uri: 'https://i.imgur.com/LmRc2Rr.png',
+                            }}></Image>
+                    </View>
                 </View>
             </ImageBackground>
         </View>
