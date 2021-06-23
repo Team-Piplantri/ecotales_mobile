@@ -78,7 +78,7 @@ export default function App({ navigation }) {
                   // headerTitle: props => <LogoTitle {...props} />,
                   headerRight: () => (
                     <Button
-                      onPress={() => navigation.avigate('Logout')}
+                      onPress={() => navigation.navigate('Logout')}
                       title="Log Out"
                       color="#000"
                     />

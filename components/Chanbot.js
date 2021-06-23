@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, View, Button, Image, ImageBackground, Modal, Pressable } from 'react-native';
-
+import axiosInstance from '../axiosApi';
 
 const Chanbot = () => {
     const [Quote, setQuote] = useState("")
@@ -20,13 +20,13 @@ const Chanbot = () => {
                     <Text style={styles.h1}>Arthshastra</Text>
                 </View>
                 <View style={styles.body}>
-                    <Text style={styles.h2}>Tales of Arthashastra</Text>
+                    <Text style={styles.h2}>Chanakya's Thoughts</Text>
                     <Text style={styles.h3}>{Quote}</Text>
                     <View style={[{ flex: 1, alignItems: "center" }]}>
-                        <Image style={{ width: 200, height: 200, resizeMode: 'contain' }}
+                        {/* <Image style={{ width: 200, height: 200, resizeMode: 'contain' }}
                             source={{
                                 uri: 'https://i.imgur.com/LmRc2Rr.png',
-                            }}></Image>
+                            }}></Image> */}
                     </View>
                 </View>
             </ImageBackground>
@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     },
 
     body: {
+        marginTop:"50%",
         padding: '3%',
     },
 
