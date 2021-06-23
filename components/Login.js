@@ -49,11 +49,7 @@ const Login = ({ navigation }) => {
     } catch (error) {
         throw error;
     }
-}
-
-    // function redirect (){
-    //     navigation.navigate('Home')
-    // }
+  }
 
   return (
     <>
@@ -80,6 +76,14 @@ const Login = ({ navigation }) => {
             style={styles.btn}
             onPress={handleSubmit}
             title="Submit"
+            color="#841584"
+          />
+        </View>
+        <View style={[{ marginBottom: "5%", width: "50%" }]}>
+          <Button
+            style={styles.btn}
+            onPress={()=>navigation.navigate('Forgot Password')}
+            title="Forgot password?"
             color="#841584"
           />
         </View>
