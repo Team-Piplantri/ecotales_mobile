@@ -13,6 +13,8 @@ import UserContext from './UserContext';
 import * as SecureStore from 'expo-secure-store';
 import Chanbot from './components/Chanbot.js'
 import Forgot from './components/Forgot';
+import Success from './components/Success';
+import Error from './components/Error';
 
 const Stack = createStackNavigator();
 
@@ -72,6 +74,8 @@ export default function App({ navigation }) {
             <Stack.Screen name="Logout" component={Logout} />
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Forgot Password" component={Forgot} />
+            <Stack.Screen name="Success" component={Success} />
+            <Stack.Screen name="Error" component={Error} />
             {/* <Stack.Screen name="Home" component={Home} /> */}
             {isLoginContext ? (
               <Stack.Screen
