@@ -72,7 +72,7 @@ const Home = ({ navigation }) => {
             <View style={[{ marginBottom: '5%', width: 120, textAlign: "center" }]}>
               <Button
                 style={styles.btn}
-                // onPress={onPressLearnMore}
+                onPress={() => navigation.navigate('Specialmode')}
                 title="Country Simulator"
                 color="#841584"
               />

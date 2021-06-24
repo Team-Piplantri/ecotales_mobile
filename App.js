@@ -13,6 +13,7 @@ import UserContext from './UserContext';
 import * as SecureStore from 'expo-secure-store';
 import Chanbot from './components/Chanbot.js'
 import Forgot from './components/Forgot';
+import Specialmode from './components/Specialmode';
 
 const Stack = createStackNavigator();
 
@@ -68,7 +69,9 @@ export default function App({ navigation }) {
           <Stack.Navigator initialRouteName="Home">
             <Stack.Screen name="Singlequiz" component={Singlequiz} />
             <Stack.Screen name="Multiplequiz" component={Multiplequiz} />
+            <Stack.Screen name="Specialmode" component={Specialmode} />
             <Stack.Screen name="Chanbot" component={Chanbot} />
+            <Stack.Screen name="Signup" component={Signup} />
             <Stack.Screen name="Logout" component={Logout} />
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Forgot Password" component={Forgot} />
@@ -95,11 +98,18 @@ export default function App({ navigation }) {
                 options={({navigation})=>({
                   // headerTitle: props => <LogoTitle {...props} />,
                   headerRight: () => (
+                    <View style={{flexDirection:'row', flexWrap:'wrap'}}>
                     <Button
                       onPress={() => navigation.navigate('Login')}
                       title="Login"
                       color="#000"
                     />
+                    <Button
+                      onPress={() => navigation.navigate('Signup')}
+                      title="Signup"
+                      color="#000"
+                    />
+                    </View>
                   ),
                 })}
               />

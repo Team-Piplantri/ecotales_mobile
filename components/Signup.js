@@ -25,6 +25,7 @@ const Signup = ({ navigation }) => {
       currency: currency,
       email:email
     });
+    console.log(response.status)
     navigation.navigate('Login')
   }
 
