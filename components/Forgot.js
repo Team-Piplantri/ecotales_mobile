@@ -8,12 +8,21 @@ import {
     Button,
     Image,
   } from "react-native";
+import axiosInstance from "../axiosApi";
 
-const Forgot = () => {
+
+const Forgot = ({navigation}) => {
     const [email, setEmail] = useState('')
 
-    function handleSubmit(){
-        console.log('Forgot password')
+    async function handleSubmit() {
+      const response = await axiosInstance.post('/password-mail/', {
+        email:email
+      });
+      if(response.status == 200){
+        navigation.navigate('Success')
+      } else {
+        navigation.navigate('Error')
+      }
     }
     
     return ( 
